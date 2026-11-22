@@ -1,0 +1,83 @@
+.data-list,
+.storage-list {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Rows separated by a thin line, no line after the last one */
+.list-item,
+.disk-item {
+    min-width: 0;
+    padding: 12px 2px;
+    border-bottom: 1px solid var(--line);
+}
+
+.list-item:first-child,
+.disk-item:first-child {
+    padding-top: 0;
+}
+
+.list-item:last-child,
+.disk-item:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+/* ---------- GPU, display and network rows ---------- */
+
+.list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+.item-main {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.item-title,
+.disk-name {
+    font-weight: 550;
+    overflow-wrap: anywhere;
+}
+
+.item-sub {
+    color: var(--muted);
+    font-size: var(--text-small);
+    overflow-wrap: anywhere;
+}
+
+/* Small monospace tag (VRAM, refresh rate, file system) */
+.badge {
+    flex: 0 0 auto;
+    color: var(--secondary);
+    font-family: var(--font-mono);
+    font-size: var(--text-small);
+    white-space: nowrap;
+}
+
+/* ---------- Disk rows ---------- */
+
+/* Name and file system on top, bar in the middle, usage text below */
+.disk-top,
+.disk-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.disk-top {
+    margin-bottom: 10px;
+}
+
+.disk-meta {
+    margin-top: 9px;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+}

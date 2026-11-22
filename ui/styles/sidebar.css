@@ -1,0 +1,108 @@
+.sidebar {
+    position: sticky;
+    top: var(--header-height);
+    height: calc(100vh - var(--header-height));
+    min-height: 440px;
+    padding: 26px 14px 18px;
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border-right: 1px solid var(--line);
+}
+
+.sidebar-heading {
+    margin-bottom: 13px;
+    padding: 0 12px;
+}
+
+/* ---------- Navigation ---------- */
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.nav-item {
+    width: 100%;
+    min-height: 40px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--secondary);
+    font-weight: 550;
+    text-align: left;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    transition: background 0.15s, color 0.15s;
+}
+
+.nav-item i {
+    width: 18px;
+    color: var(--muted);
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.nav-item:hover {
+    color: var(--text);
+    background: var(--raised);
+}
+
+/* Highlight for the selected view */
+.nav-item.active {
+    color: var(--text);
+    background: var(--accent-soft);
+    border-color: var(--accent-line);
+}
+
+.nav-item.active i {
+    color: var(--accent);
+}
+
+.nav-separator {
+    height: 1px;
+    margin: 9px 10px;
+    background: var(--line);
+}
+
+/* Version text pinned to the bottom */
+.sidebar-bottom {
+    margin-top: auto;
+    padding: 17px 12px 0;
+    border-top: 1px solid var(--line);
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 680px) {
+    /* Sidebar becomes a scrollable strip under the header */
+    .sidebar {
+        z-index: 10;
+        height: auto;
+        min-height: 0;
+        padding: 10px 12px;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .sidebar-heading,
+    .sidebar-bottom,
+    .nav-separator {
+        display: none;
+    }
+
+    .sidebar-nav {
+        flex-direction: row;
+        gap: 4px;
+        overflow-x: auto;
+    }
+
+    .nav-item {
+        width: auto;
+        min-width: max-content;
+        min-height: 38px;
+    }
+}

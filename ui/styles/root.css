@@ -1,0 +1,280 @@
+/* Dark theme is the default */
+:root,
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #090b0f;
+    --surface: #10141a;
+    --raised: #171d26;
+    --line: #202833;
+    --line-strong: #323e50;
+    --text: #f4f7fb;
+    --secondary: #c8d1dc;
+    --muted: #8f9bab;
+    --accent: #62b0ff;
+    --accent-soft: rgba(98, 176, 255, 0.14);
+    --accent-line: rgba(98, 176, 255, 0.28);
+    --track: #1f2733;
+    --good: #4fd6a0;
+    --warn: #f0b95a;
+    --danger: #f27c7c;
+}
+
+/* Light theme overrides colors only */
+:root[data-theme="light"] {
+    color-scheme: light;
+    --bg: #f3f5f6;
+    --surface: #ffffff;
+    --raised: #f7f8f9;
+    --line: #e1e5e8;
+    --line-strong: #cbd2d8;
+    --text: #20262c;
+    --secondary: #4d5862;
+    --muted: #6b757f;
+    --accent: #326d9f;
+    --accent-soft: rgba(50, 109, 159, 0.09);
+    --accent-line: rgba(50, 109, 159, 0.25);
+    --track: #e5e9ed;
+    --good: #25835a;
+    --warn: #a86b19;
+    --danger: #bd4141;
+}
+
+/* Fonts, type scale and sizing shared by both themes */
+:root {
+    --font-sans: "Manrope", system-ui, sans-serif;
+    --font-mono: "Roboto Mono", ui-monospace, Consolas, monospace;
+    --font-brand: "Syncopate", "Manrope", sans-serif;
+    --text-label: 0.75rem;
+    --text-small: 0.875rem;
+    --text-body: 1rem;
+    --text-heading: 1.125rem;
+    --text-title: clamp(1.75rem, 2.3vw, 2.25rem);
+    --radius: 6px;
+    --header-height: 62px;
+}
+
+/* ---------- Base ---------- */
+
+/* Reset margins and padding everywhere */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.2s, color 0.2s;
+}
+
+/* Buttons and links inherit the page font */
+button,
+a {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* Visible keyboard focus */
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+/* Monospace values with aligned digits */
+.mono {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+}
+
+::selection {
+    background: var(--accent-soft);
+}
+
+/* Small uppercase labels used all over the UI */
+.eyebrow,
+.meta-label,
+.section-note,
+.sidebar-heading,
+.brand-context,
+.sidebar-version,
+.footer-brand {
+    color: var(--muted);
+    font-size: var(--text-label);
+    font-weight: 650;
+    letter-spacing: 0.1em;
+}
+
+/* Dim separator dot in the brand text */
+.sidebar-version span,
+.footer-brand span {
+    color: var(--line-strong);
+}
+
+/* ---------- Page layout ---------- */
+
+/* Sidebar on the left, content on the right */
+.app-layout {
+    min-height: calc(100vh - var(--header-height));
+    display: grid;
+    grid-template-columns: 224px minmax(0, 1fr);
+}
+
+.main-content {
+    min-width: 0;
+    padding: 36px clamp(24px, 3vw, 52px) 22px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Title block on the left, uptime and locale on the right */
+.page-heading {
+    margin-bottom: 28px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.eyebrow {
+    margin-bottom: 7px;
+}
+
+.page-heading h1 {
+    font-size: var(--text-title);
+    font-weight: 650;
+    letter-spacing: -0.04em;
+    line-height: 1.2;
+}
+
+.page-description {
+    margin-top: 8px;
+    color: var(--muted);
+}
+
+.machine-meta {
+    display: flex;
+    gap: 25px;
+}
+
+.machine-meta > div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.machine-meta strong {
+    color: var(--secondary);
+    font-size: var(--text-small);
+    font-weight: 500;
+}
+
+/* Two-column panel grid */
+.overview-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+/* Operating system panel spans the full width */
+.system-panel {
+    grid-column: 1 / -1;
+}
+
+/* A single selected panel gets the full width */
+body:not([data-active-view="all"]) .overview-grid {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+/* ---------- Progress bars ---------- */
+
+.progress-track {
+    width: 100%;
+    height: 6px;
+    overflow: hidden;
+    background: var(--track);
+    border-radius: 3px;
+}
+
+/* Memory bar is slightly thicker than disk bars */
+.memory-panel .progress-track {
+    height: 8px;
+}
+
+.progress-fill {
+    width: 0;
+    height: 100%;
+    background: var(--accent);
+    border-radius: 3px;
+    transition: width 0.45s ease, background-color 0.2s ease;
+}
+
+/* Usage colors set from JS */
+.progress-fill.level-ok {
+    background: var(--good);
+}
+
+.progress-fill.level-warn {
+    background: var(--warn);
+}
+
+.progress-fill.level-danger {
+    background: var(--danger);
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 680px) {
+    :root {
+        --header-height: 58px;
+    }
+
+    /* Sidebar stacks above the content */
+    .app-layout {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .main-content {
+        padding: 28px 16px 20px;
+    }
+
+    .page-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    /* Everything stacks into one column */
+    .overview-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .system-panel {
+        grid-column: auto;
+    }
+}
+
+/* ---------- Accessibility ---------- */
+
+/* Turn off animations for people who ask for it */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}

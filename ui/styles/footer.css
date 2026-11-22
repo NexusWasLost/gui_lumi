@@ -1,0 +1,33 @@
+.app-footer {
+    margin-top: auto;
+    padding: 25px 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-link {
+    color: var(--muted);
+    font-size: var(--text-small);
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    color: var(--text);
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 680px) {
+    .app-footer {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+}

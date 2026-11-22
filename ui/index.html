@@ -13,7 +13,14 @@
         href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;650;700&family=Roboto+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="./style.css"> -->
+    <link rel="stylesheet" href="./styles/root.css">
+    <link rel="stylesheet" href="./styles/header.css">
+    <link rel="stylesheet" href="./styles/sidebar.css">
+    <link rel="stylesheet" href="./styles/panels.css">
+    <link rel="stylesheet" href="./styles/lists.css">
+    <link rel="stylesheet" href="./styles/footer.css">
 </head>
 
 <body data-active-view="all">
@@ -21,21 +28,11 @@
     <header class="app-header">
         <div class="header-inner">
             <a class="brand" href="#" aria-label="Lumi home">
-                <span class="brand-icon">
-                    <i class="ri-cpu-line" aria-hidden="true"></i>
-                </span>
-                <span class="brand-name">LUMI</span>
+                <span class="brand-name">LumI</span>
                 <span class="brand-context">SYSTEM MONITOR</span>
             </a>
 
             <div class="header-actions">
-                <div class="host-label">
-                    <span class="status-dot"></span>
-                    <span class="mono" id="host-user">Loading...</span>
-                </div>
-
-                <span class="header-divider"></span>
-
                 <button id="theme-toggle" class="icon-button pointer-btn" type="button"
                     aria-label="Switch to light mode">
                     <i class="theme-icon ri-sun-line" aria-hidden="true"></i>
@@ -157,8 +154,8 @@
                         <span class="memory-percent mono" id="ram-percent">0%</span>
                     </div>
 
-                    <div class="usage-track" role="presentation">
-                        <div class="progress-fill" id="ram-bar" style="width: 0%;"></div>
+                    <div class="progress-track" role="presentation">
+                        <div class="progress-fill" id="ram-bar"></div>
                     </div>
 
                     <div class="memory-stats">
@@ -244,32 +241,11 @@
         </main>
     </div>
 
-    <script src="./script.js"></script>
-
-    <script>
-        const navigationItems = document.querySelectorAll(".nav-item");
-        const pageTitle = document.getElementById("page-title");
-        const pageDescription = document.getElementById("page-description");
-
-        navigationItems.forEach((item) => {
-            item.addEventListener("click", () => {
-                const view = item.dataset.view;
-
-                document.body.dataset.activeView = view;
-
-                navigationItems.forEach((navItem) => {
-                    navItem.classList.remove("active");
-                    navItem.removeAttribute("aria-current");
-                });
-
-                item.classList.add("active");
-                item.setAttribute("aria-current", "page");
-
-                pageTitle.textContent = item.dataset.title;
-                pageDescription.textContent = item.dataset.description;
-            });
-        });
-    </script>
+    <script src="./scripts/helpers.js"></script>
+    <script src="./scripts/fetchers.js"></script>
+    <script src="./scripts/theme.js"></script>
+    <script src="./scripts/navigation.js"></script>
+    <script src="./scripts/main.js"></script>
 
 </body>
 
