@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark light">
+    <title>Lumi — System Monitor</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;650;700&family=Roboto+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body data-active-view="all">
+
+    <header class="app-header">
+        <div class="header-inner">
+            <a class="brand" href="#" aria-label="Lumi home">
+                <span class="brand-icon">
+                    <i class="ri-cpu-line" aria-hidden="true"></i>
+                </span>
+                <span class="brand-name">LUMI</span>
+                <span class="brand-context">SYSTEM MONITOR</span>
+            </a>
+
+            <div class="header-actions">
+                <div class="host-label">
+                    <span class="status-dot"></span>
+                    <span class="mono" id="host-user">Loading...</span>
+                </div>
+
+                <span class="header-divider"></span>
+
+                <button id="theme-toggle" class="icon-button pointer-btn" type="button"
+                    aria-label="Switch to light mode">
+                    <i class="theme-icon ri-sun-line" aria-hidden="true"></i>
+                    <span class="theme-label">Light</span>
+                </button>
+
+                <button id="refresh-btn" class="refresh-button pointer-btn" type="button"
+                    title="Refresh hardware metrics">
+                    <i class="ri-refresh-line" aria-hidden="true"></i>
+                    <span>Refresh</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-layout">
+
+        <aside class="sidebar">
+            <div class="sidebar-heading">MONITORING</div>
+
+            <nav class="sidebar-nav" aria-label="System monitoring sections">
+                <button class="nav-item active" type="button" data-view="all" data-title="System overview"
+                    data-description="Hardware specifications and resource information for this machine."
+                    aria-current="page">
+                    <i class="ri-dashboard-line" aria-hidden="true"></i>
+                    <span>All</span>
+                </button>
+
+                <div class="nav-separator"></div>
+
+                <button class="nav-item" type="button" data-view="cpu" data-title="Processor"
+                    data-description="Processor identification and architecture.">
+                    <i class="ri-cpu-line" aria-hidden="true"></i>
+                    <span>CPU</span>
+                </button>
+
+                <button class="nav-item" type="button" data-view="memory" data-title="Memory"
+                    data-description="Installed memory and current resource usage.">
+                    <i class="ri-database-2-line" aria-hidden="true"></i>
+                    <span>Memory</span>
+                </button>
+
+                <button class="nav-item" type="button" data-view="gpu" data-title="Graphics"
+                    data-description="Graphics adapters detected on this machine.">
+                    <i class="ri-computer-line" aria-hidden="true"></i>
+                    <span>GPU</span>
+                </button>
+
+                <button class="nav-item" type="button" data-view="displays" data-title="Displays"
+                    data-description="Connected displays and their properties.">
+                    <i class="ri-tv-2-line" aria-hidden="true"></i>
+                    <span>Displays</span>
+                </button>
+
+                <button class="nav-item" type="button" data-view="storage" data-title="Storage"
+                    data-description="Local storage volumes and capacity information.">
+                    <i class="ri-hard-drive-2-line" aria-hidden="true"></i>
+                    <span>Storage</span>
+                </button>
+
+                <button class="nav-item" type="button" data-view="network" data-title="Network"
+                    data-description="Network interfaces available on this machine.">
+                    <i class="ri-wifi-line" aria-hidden="true"></i>
+                    <span>Network</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <span class="sidebar-version">LUMI <span>·</span> SYSTEM MONITOR</span>
+            </div>
+        </aside>
+
+        <main class="main-content">
+
+            <div class="page-heading">
+                <div>
+                    <p class="eyebrow">LOCAL MACHINE</p>
+                    <h1 id="page-title">System overview</h1>
+                    <p class="page-description" id="page-description">
+                        Hardware specifications and resource information for this machine.
+                    </p>
+                </div>
+
+                <div class="machine-meta">
+                    <div>
+                        <span class="meta-label">UPTIME</span>
+                        <strong class="mono" id="uptime-value">--</strong>
+                    </div>
+                    <div>
+                        <span class="meta-label">LOCALE</span>
+                        <strong class="mono" id="locale-badge">--</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="overview-grid">
+
+                <section class="section-panel" data-view="cpu" aria-labelledby="cpu-heading">
+                    <div class="section-heading">
+                        <h2 id="cpu-heading">Processor</h2>
+                        <span class="section-note">CPU</span>
+                    </div>
+
+                    <dl class="system-grid">
+                        <div class="system-field field-wide">
+                            <dt>Processor</dt>
+                            <dd id="cpu-name">--</dd>
+                        </div>
+                        <div class="system-field">
+                            <dt>Architecture</dt>
+                            <dd class="mono" id="cpu-arch">--</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="section-panel memory-panel" data-view="memory" aria-labelledby="memory-heading">
+                    <div class="section-heading">
+                        <h2 id="memory-heading">Memory</h2>
+                        <span class="memory-percent mono" id="ram-percent">0%</span>
+                    </div>
+
+                    <div class="usage-track" role="presentation">
+                        <div class="progress-fill" id="ram-bar" style="width: 0%;"></div>
+                    </div>
+
+                    <div class="memory-stats">
+                        <div>
+                            <span>Used</span>
+                            <strong class="mono" id="ram-used">--</strong>
+                        </div>
+                        <div>
+                            <span>Available</span>
+                            <strong class="mono" id="ram-avail">--</strong>
+                        </div>
+                        <div>
+                            <span>Installed</span>
+                            <strong class="mono" id="ram-total">--</strong>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section-panel" data-view="gpu" aria-labelledby="gpu-heading">
+                    <div class="section-heading">
+                        <h2 id="gpu-heading">Graphics adapters</h2>
+                        <span class="section-note">GPU</span>
+                    </div>
+                    <div class="data-list" id="gpu-list"></div>
+                </section>
+
+                <section class="section-panel" data-view="displays" aria-labelledby="display-heading">
+                    <div class="section-heading">
+                        <h2 id="display-heading">Displays</h2>
+                        <span class="section-note">CONNECTED OUTPUTS</span>
+                    </div>
+                    <div class="data-list" id="display-list"></div>
+                </section>
+
+                <section class="section-panel" data-view="storage" aria-labelledby="storage-heading">
+                    <div class="section-heading">
+                        <h2 id="storage-heading">Storage volumes</h2>
+                        <span class="section-note">LOCAL FILE SYSTEMS</span>
+                    </div>
+                    <div class="storage-list" id="disk-list"></div>
+                </section>
+
+                <section class="section-panel" data-view="network" aria-labelledby="network-heading">
+                    <div class="section-heading">
+                        <h2 id="network-heading">Network interfaces</h2>
+                        <span class="section-note">AVAILABLE ADAPTERS</span>
+                    </div>
+                    <div class="data-list" id="network-list"></div>
+                </section>
+
+                <section class="section-panel system-panel" data-view="all-only" aria-labelledby="system-heading">
+                    <div class="section-heading">
+                        <h2 id="system-heading">Operating system</h2>
+                        <span class="section-note">SYSTEM INFORMATION</span>
+                    </div>
+
+                    <dl class="system-grid">
+                        <div class="system-field">
+                            <dt>Operating system</dt>
+                            <dd id="os-name">--</dd>
+                        </div>
+                        <div class="system-field">
+                            <dt>Version</dt>
+                            <dd class="mono" id="os-version-badge">--</dd>
+                        </div>
+                        <div class="system-field">
+                            <dt>Build</dt>
+                            <dd class="mono" id="os-build-detail">--</dd>
+                        </div>
+                    </dl>
+                </section>
+
+            </div>
+
+            <footer class="app-footer">
+                <span class="footer-brand">LUMI <span>·</span> SYSTEM MONITOR</span>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">GitHub</a>
+                    <a href="#" class="footer-link">License</a>
+                </div>
+            </footer>
+
+        </main>
+    </div>
+
+    <script src="./script.js"></script>
+
+    <script>
+        const navigationItems = document.querySelectorAll(".nav-item");
+        const pageTitle = document.getElementById("page-title");
+        const pageDescription = document.getElementById("page-description");
+
+        navigationItems.forEach((item) => {
+            item.addEventListener("click", () => {
+                const view = item.dataset.view;
+
+                document.body.dataset.activeView = view;
+
+                navigationItems.forEach((navItem) => {
+                    navItem.classList.remove("active");
+                    navItem.removeAttribute("aria-current");
+                });
+
+                item.classList.add("active");
+                item.setAttribute("aria-current", "page");
+
+                pageTitle.textContent = item.dataset.title;
+                pageDescription.textContent = item.dataset.description;
+            });
+        });
+    </script>
+
+</body>
+
+</html>
