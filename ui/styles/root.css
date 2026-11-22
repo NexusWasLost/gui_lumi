@@ -42,13 +42,14 @@
 /* Fonts, type scale and sizing shared by both themes */
 :root {
     --font-sans: "Manrope", system-ui, sans-serif;
-    --font-mono: "Roboto Mono", ui-monospace, Consolas, monospace;
+    --font-mono: "Google Sans", sans-serif;
     --font-brand: "Syncopate", "Manrope", sans-serif;
     --text-label: 0.75rem;
-    --text-small: 0.875rem;
-    --text-body: 1rem;
-    --text-heading: 1.125rem;
-    --text-title: clamp(1.75rem, 2.3vw, 2.25rem);
+    --text-small: 0.85rem;
+    --text-body: 0.9rem;
+    --text-heading: 1rem;
+    --text-metric: 1.25rem;
+    --text-title: 1.75rem;
     --radius: 6px;
     --header-height: 62px;
 }
@@ -56,9 +57,7 @@
 /* ---------- Base ---------- */
 
 /* Reset margins and padding everywhere */
-*,
-*::before,
-*::after {
+*, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -103,13 +102,8 @@ a:focus-visible {
 }
 
 /* Small uppercase labels used all over the UI */
-.eyebrow,
-.meta-label,
-.section-note,
-.sidebar-heading,
-.brand-context,
-.sidebar-version,
-.footer-brand {
+.eyebrow, .meta-label, .section-note, .sidebar-heading,
+.brand-context, .sidebar-version, .footer-brand {
     color: var(--muted);
     font-size: var(--text-label);
     font-weight: 650;
@@ -122,8 +116,6 @@ a:focus-visible {
     color: var(--line-strong);
 }
 
-/* ---------- Page layout ---------- */
-
 /* Sidebar on the left, content on the right */
 .app-layout {
     min-height: calc(100vh - var(--header-height));
@@ -133,7 +125,7 @@ a:focus-visible {
 
 .main-content {
     min-width: 0;
-    padding: 36px clamp(24px, 3vw, 52px) 22px;
+    padding: 36px 40px 22px;
     display: flex;
     flex-direction: column;
 }
@@ -158,7 +150,7 @@ a:focus-visible {
     line-height: 1.2;
 }
 
-.page-description {
+.host-username {
     margin-top: 8px;
     color: var(--muted);
 }
@@ -168,7 +160,7 @@ a:focus-visible {
     gap: 25px;
 }
 
-.machine-meta > div {
+.machine-meta>div {
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -196,8 +188,6 @@ a:focus-visible {
 body:not([data-active-view="all"]) .overview-grid {
     grid-template-columns: minmax(0, 1fr);
 }
-
-/* ---------- Progress bars ---------- */
 
 .progress-track {
     width: 100%;
@@ -266,10 +256,9 @@ body:not([data-active-view="all"]) .overview-grid {
     }
 }
 
-/* ---------- Accessibility ---------- */
-
 /* Turn off animations for people who ask for it */
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {

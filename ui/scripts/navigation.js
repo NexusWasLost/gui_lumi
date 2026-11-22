@@ -2,7 +2,6 @@ const initializeNavigation = function () {
     const navigationItems = document.querySelectorAll(".nav-item");
     const panels = document.querySelectorAll(".section-panel");
     const pageTitle = document.querySelector("#page-title");
-    const pageDescription = document.querySelector("#page-description");
 
     navigationItems.forEach(function (item) {
         item.addEventListener("click", function () {
@@ -23,7 +22,6 @@ const initializeNavigation = function () {
             item.setAttribute("aria-current", "page");
 
             pageTitle.textContent = item.dataset.title;
-            pageDescription.textContent = item.dataset.description;
         });
     });
 };

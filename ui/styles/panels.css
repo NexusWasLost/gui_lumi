@@ -70,11 +70,9 @@
     font-weight: 400;
 }
 
-/* ---------- Memory ---------- */
-
 .memory-percent {
     color: var(--accent);
-    font-size: var(--text-title);
+    font-size: var(--text-metric);
     font-weight: 600;
 }
 

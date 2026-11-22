@@ -15,6 +15,7 @@ const renderMemory = function (mem) {
 };
 
 const renderIdentity = function (info) {
+    setText("#host-user", `${info.host}@${info.username}`);
     setText("#locale-badge", info.locale);
     setText("#uptime-value", formatUptime(info.uptime));
 };

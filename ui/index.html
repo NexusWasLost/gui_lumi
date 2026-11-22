@@ -10,11 +10,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;650;700&family=Roboto+Mono:wght@400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Manrope:wght@200..800&display=swap"
         rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&display=swap" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="./style.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="./styles/root.css">
     <link rel="stylesheet" href="./styles/header.css">
     <link rel="stylesheet" href="./styles/sidebar.css">
@@ -55,7 +55,6 @@
 
             <nav class="sidebar-nav" aria-label="System monitoring sections">
                 <button class="nav-item active" type="button" data-view="all" data-title="System overview"
-                    data-description="Hardware specifications and resource information for this machine."
                     aria-current="page">
                     <i class="ri-dashboard-line" aria-hidden="true"></i>
                     <span>All</span>
@@ -63,38 +62,32 @@
 
                 <div class="nav-separator"></div>
 
-                <button class="nav-item" type="button" data-view="cpu" data-title="Processor"
-                    data-description="Processor identification and architecture.">
+                <button class="nav-item" type="button" data-view="cpu" data-title="Processor">
                     <i class="ri-cpu-line" aria-hidden="true"></i>
                     <span>CPU</span>
                 </button>
 
-                <button class="nav-item" type="button" data-view="memory" data-title="Memory"
-                    data-description="Installed memory and current resource usage.">
+                <button class="nav-item" type="button" data-view="memory" data-title="Memory">
                     <i class="ri-database-2-line" aria-hidden="true"></i>
                     <span>Memory</span>
                 </button>
 
-                <button class="nav-item" type="button" data-view="gpu" data-title="Graphics"
-                    data-description="Graphics adapters detected on this machine.">
+                <button class="nav-item" type="button" data-view="gpu" data-title="Graphics">
                     <i class="ri-computer-line" aria-hidden="true"></i>
                     <span>GPU</span>
                 </button>
 
-                <button class="nav-item" type="button" data-view="displays" data-title="Displays"
-                    data-description="Connected displays and their properties.">
+                <button class="nav-item" type="button" data-view="displays" data-title="Displays">
                     <i class="ri-tv-2-line" aria-hidden="true"></i>
                     <span>Displays</span>
                 </button>
 
-                <button class="nav-item" type="button" data-view="storage" data-title="Storage"
-                    data-description="Local storage volumes and capacity information.">
+                <button class="nav-item" type="button" data-view="storage" data-title="Storage">
                     <i class="ri-hard-drive-2-line" aria-hidden="true"></i>
                     <span>Storage</span>
                 </button>
 
-                <button class="nav-item" type="button" data-view="network" data-title="Network"
-                    data-description="Network interfaces available on this machine.">
+                <button class="nav-item" type="button" data-view="network" data-title="Network">
                     <i class="ri-wifi-line" aria-hidden="true"></i>
                     <span>Network</span>
                 </button>
@@ -111,9 +104,7 @@
                 <div>
                     <p class="eyebrow">LOCAL MACHINE</p>
                     <h1 id="page-title">System overview</h1>
-                    <p class="page-description" id="page-description">
-                        Hardware specifications and resource information for this machine.
-                    </p>
+                    <p class="host-username mono" id="host-user">Loading...</p>
                 </div>
 
                 <div class="machine-meta">
