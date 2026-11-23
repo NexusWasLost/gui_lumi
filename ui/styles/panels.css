@@ -18,9 +18,10 @@
     margin-bottom: 15px;
     padding-bottom: 13px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
+    gap: 4px 16px;
     border-bottom: 1px solid var(--line);
 }
 
@@ -70,16 +71,19 @@
     font-weight: 400;
 }
 
+/* ---------- Memory ---------- */
+
 .memory-percent {
     color: var(--accent);
     font-size: var(--text-metric);
     font-weight: 600;
 }
 
+/* Columns drop from three to two to one as the panel narrows */
 .memory-stats {
     margin-top: 18px;
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 16px;
 }
 
@@ -90,19 +94,20 @@
     gap: 5px;
 }
 
+/* Wrap between items, break inside a value only as a last resort */
 .memory-stats strong {
     font-weight: 500;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
 }
 
 /* ---------- Mobile ---------- */
 
-@media (max-width: 680px) {
+@media (max-width: 900px) {
     .section-panel {
         padding: 16px;
     }
 
-    .memory-stats {
-        grid-template-columns: minmax(0, 1fr);
+    .system-grid {
+        gap: 14px 20px;
     }
 }

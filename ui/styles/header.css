@@ -26,6 +26,7 @@
     text-decoration: none;
 }
 
+/* Gradient wordmark, colors run from the right edge to the left */
 .brand-name {
     font-family: var(--font-brand);
     font-size: var(--text-body);
@@ -58,12 +59,6 @@
     display: flex;
     align-items: center;
     gap: 10px;
-}
-
-.header-divider {
-    width: 1px;
-    height: 22px;
-    background: var(--line);
 }
 
 /* Theme and refresh buttons share the same base */
@@ -113,15 +108,26 @@
 
 /* ---------- Mobile ---------- */
 
-@media (max-width: 680px) {
+@media (max-width: 900px) {
     .header-inner {
         padding: 0 16px;
     }
 
-    /* Hide the less important header parts */
-    .brand-context,
-    .host-label,
-    .header-divider {
+    /* Hide the less important header part */
+    .brand-context {
         display: none;
+    }
+}
+
+/* Icon-only buttons on very small screens */
+@media (max-width: 480px) {
+    .icon-button span,
+    .refresh-button span {
+        display: none;
+    }
+
+    .icon-button,
+    .refresh-button {
+        padding: 0 10px;
     }
 }

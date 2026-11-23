@@ -57,7 +57,9 @@
 /* ---------- Base ---------- */
 
 /* Reset margins and padding everywhere */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -102,8 +104,13 @@ a:focus-visible {
 }
 
 /* Small uppercase labels used all over the UI */
-.eyebrow, .meta-label, .section-note, .sidebar-heading,
-.brand-context, .sidebar-version, .footer-brand {
+.eyebrow,
+.meta-label,
+.section-note,
+.sidebar-heading,
+.brand-context,
+.sidebar-version,
+.footer-brand {
     color: var(--muted);
     font-size: var(--text-label);
     font-weight: 650;
@@ -116,14 +123,16 @@ a:focus-visible {
     color: var(--line-strong);
 }
 
-/* Sidebar on the left, content on the right */
+/* ---------- Page layout ---------- */
+
+/* Sidebar on the left, content fills the rest */
 .app-layout {
     min-height: calc(100vh - var(--header-height));
-    display: grid;
-    grid-template-columns: 224px minmax(0, 1fr);
+    display: flex;
 }
 
 .main-content {
+    flex: 1;
     min-width: 0;
     padding: 36px 40px 22px;
     display: flex;
@@ -160,7 +169,7 @@ a:focus-visible {
     gap: 25px;
 }
 
-.machine-meta>div {
+.machine-meta > div {
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -188,6 +197,8 @@ a:focus-visible {
 body:not([data-active-view="all"]) .overview-grid {
     grid-template-columns: minmax(0, 1fr);
 }
+
+/* ---------- Progress bars ---------- */
 
 .progress-track {
     width: 100%;
@@ -225,14 +236,15 @@ body:not([data-active-view="all"]) .overview-grid {
 
 /* ---------- Mobile ---------- */
 
-@media (max-width: 680px) {
+@media (max-width: 900px) {
     :root {
         --header-height: 58px;
+        --text-metric: 1rem;
+        --text-title: 1.5rem;
     }
 
     /* Sidebar stacks above the content */
     .app-layout {
-        display: flex;
         flex-direction: column;
     }
 
@@ -258,7 +270,6 @@ body:not([data-active-view="all"]) .overview-grid {
 
 /* Turn off animations for people who ask for it */
 @media (prefers-reduced-motion: reduce) {
-
     *,
     *::before,
     *::after {
