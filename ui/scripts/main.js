@@ -14,10 +14,15 @@ const renderMemory = function (mem) {
     setText("#ram-total", `${formatMB(mem.totalRAM)} (${mem.totalRAM} MB)`);
 };
 
+const renderUptime = async function(ut){
+    const uptime = ut.uptime;
+    setText("#uptime-value", formatUptime(uptime));
+}
+
 const renderIdentity = function (info) {
     setText("#host-user", `${info.host}@${info.username}`);
     setText("#locale-badge", info.locale);
-    setText("#uptime-value", formatUptime(info.uptime));
+    // setText("#uptime-value", formatUptime(info.uptime));
 };
 
 const renderCpu = function (info) {
@@ -156,8 +161,10 @@ const refreshSystemInfo = async function () {
 const refreshMemory = async function () {
     try {
         const mem = await fetchMemory();
-        if (!mem) return;
+        const uptime = await fetchUptime();
+        if (!mem || !uptime) return;
         renderMemory(mem);
+        renderUptime(uptime);
     } catch (err) {
         console.log("Failed to fetch memory information:", err);
     }
@@ -171,7 +178,7 @@ window.addEventListener("DOMContentLoaded", async function () {
     await refreshMemory();
 
     setInterval(refreshMemory, 1000);
-
+    await fetchUptime();
     const refreshBtn = document.querySelector("#refresh-btn");
     const refreshIcon = document.querySelector(".refresh-icon");
 

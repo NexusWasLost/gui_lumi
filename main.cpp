@@ -31,6 +31,14 @@ std::string getSystemMem(LUMI* l){
     return memj.dump();
 }
 
+std::string getSystemUptime(LUMI* l){
+    getUptime(l);
+    json uptimej;
+    uptimej["uptime"] = l->uptime;
+
+    return uptimej.dump();
+}
+
 std::string lumi(LUMI* lumi){
     getCPU(lumi);
     getGPU(lumi);
@@ -38,7 +46,6 @@ std::string lumi(LUMI* lumi){
     getDisplay(lumi);
     getCurrentUsername(lumi);
     getHostName(lumi);
-    getUptime(lumi);
     getLocale(lumi);
     getNetwork(lumi);
     getDisk(lumi);
@@ -53,7 +60,6 @@ std::string lumi(LUMI* lumi){
     j["host"] = lumi->host;
     j["username"] = lumi->currentUserName;
     j["locale"] = wideToUtf8(lumi->locale);
-    j["uptime"] = lumi->uptime;
 
     for(int x = 0; x < lumi->diskCount; x++){
         json disk;
@@ -97,6 +103,9 @@ std::string getSystemInfoWrapper(const std::string& req){
 std::string getSystemMemWrapper(const std::string& req){
     return getSystemMem(&global_lumi);
 }
+std::string getSystemUptimeWrapper(const std::string& req){
+    return getSystemUptime(&global_lumi);
+}
 
 #ifdef _WIN32
 int WINAPI WinMain(HINSTANCE /*hInst*/, HINSTANCE /*hPrevInst*/,
@@ -114,6 +123,7 @@ int main() {
 
     w.bind("getSystemInfo", getSystemInfoWrapper);
     w.bind("getSystemMem", getSystemMemWrapper);
+    w.bind("getSystemUptime", getSystemUptimeWrapper);
 
     w.run();
   }
