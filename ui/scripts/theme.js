@@ -6,14 +6,14 @@ const setTheme = function (theme) {
     document.documentElement.setAttribute("data-theme", theme);
 
     if (theme === "dark") {
-        themeIcon.className = "theme-icon ri-sun-fill";
-        themeLabel.textContent = "Light";
+        themeIcon.className = "theme-icon ri-lightbulb-fill";
+        themeLabel.textContent = "Switch to Light Mode";
         themeButton.setAttribute("aria-label", "Switch to light mode");
         return;
     }
 
     themeIcon.className = "theme-icon ri-moon-fill";
-    themeLabel.textContent = "Dark";
+    themeLabel.textContent = "Switch to Dark Mode";
     themeButton.setAttribute("aria-label", "Switch to dark mode");
 };
 

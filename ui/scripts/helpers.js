@@ -42,3 +42,12 @@ const createElement = function (tag, className, textContent) {
 const setText = function (selector, text) {
     document.querySelector(selector).textContent = text;
 };
+
+//used for rotating stuff (current being used mainly for rotating the refresh icon)
+const rotateStuff = function(stuff){
+    stuff.classList.remove("rotateable");
+    stuff.style.transform = "rotate(0deg)";
+    stuff.offsetWidth; //force re rotation
+    stuff.classList.add("rotateable");
+    stuff.style.transform = "rotate(360deg)";
+}

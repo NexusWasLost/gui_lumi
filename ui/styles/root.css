@@ -1,6 +1,4 @@
-/* Dark theme is the default */
-:root,
-:root[data-theme="dark"] {
+:root, :root[data-theme="dark"] {
     color-scheme: dark;
     --bg: #090b0f;
     --surface: #10141a;
@@ -15,7 +13,6 @@
     --accent-line: rgba(98, 176, 255, 0.28);
     --track: #1f2733;
     --good: #4fd6a0;
-    --warn: #f0b95a;
     --danger: #f27c7c;
 }
 
@@ -35,7 +32,6 @@
     --accent-line: rgba(50, 109, 159, 0.25);
     --track: #e5e9ed;
     --good: #25835a;
-    --warn: #a86b19;
     --danger: #bd4141;
 }
 
@@ -52,17 +48,17 @@
     --text-title: 1.75rem;
     --radius: 6px;
     --header-height: 62px;
+    --warn: #f0b95a;
 }
 
 /* ---------- Base ---------- */
 
 /* Reset margins and padding everywhere */
-*,
-*::before,
-*::after {
+*, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    cursor: default;
 }
 
 body {
@@ -77,13 +73,14 @@ body {
 }
 
 /* Buttons and links inherit the page font */
-button,
-a {
+button, a {
     font: inherit;
+    cursor: pointer !important;
 }
 
-button {
-    cursor: pointer;
+button *, button *::before,
+a *, a *::before {
+    cursor: inherit;
 }
 
 /* Visible keyboard focus */
@@ -104,12 +101,8 @@ a:focus-visible {
 }
 
 /* Small uppercase labels used all over the UI */
-.eyebrow,
-.meta-label,
-.section-note,
-.sidebar-heading,
-.brand-context,
-.sidebar-version,
+.eyebrow, .meta-label, .section-note,
+.sidebar-heading, .brand-context, .sidebar-version,
 .footer-brand {
     color: var(--muted);
     font-size: var(--text-label);

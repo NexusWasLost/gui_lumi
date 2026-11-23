@@ -172,7 +172,11 @@ window.addEventListener("DOMContentLoaded", async function () {
 
     setInterval(refreshMemory, 1000);
 
-    document.querySelector("#refresh-btn").addEventListener("click", async function () {
+    const refreshBtn = document.querySelector("#refresh-btn");
+    const refreshIcon = document.querySelector(".refresh-icon");
+
+    refreshBtn.addEventListener("click", async function () {
+        rotateStuff(refreshIcon);
         await refreshSystemInfo();
         await refreshMemory();
     });
