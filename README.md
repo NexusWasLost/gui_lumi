@@ -6,6 +6,8 @@ This is an Graphical user interface application built using C++ and webview, int
 
 Download from [releases]() or click to download the latest release [here]().
 
+No installations required, it ships as a portable executable.
+
 > [!NOTE]
 > Windows may show a SmartScreen warning because the app is not code-signed. Choose More info, then Run anyway.
 
