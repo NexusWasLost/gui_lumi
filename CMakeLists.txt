@@ -6,7 +6,6 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 
 include(FetchContent)
-
 FetchContent_Declare(
     webview
     GIT_REPOSITORY https://github.com/webview/webview
@@ -20,3 +19,13 @@ target_link_directories(Lumi PRIVATE ./Lumi_v5.0.0/lib)
 target_link_libraries(Lumi PRIVATE webview::core)
 target_link_libraries(Lumi PRIVATE lumi)
 target_link_libraries(Lumi PRIVATE dxgi dxguid ole32 iphlpapi)
+
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+    add_custom_command(
+        TARGET Lumi
+        POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/assets ${CMAKE_SOURCE_DIR}/release_build/release/assets
+        COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/build/bin ${CMAKE_SOURCE_DIR}/release_build/release
+        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/LICENSE ${CMAKE_SOURCE_DIR}/release_build/release
+    )
+endif()
