@@ -13,6 +13,16 @@ No installations required, it ships as a portable executable.
 
 Supported on Windows 10 and Windows 11. Moreover it requires [WebView2](https://developer.microsoft.com/en-in/microsoft-edge/webview2/?ch=1&form=MA13LH&cs=2885428259) to render the UI, though it should be present on most systems and I too bundle a `libwebview.dll` with downloadable file.
 
+## Screenshots
+
+### Dark
+
+[![lumi-gui-dark.png](https://i.postimg.cc/hhWTX79k/lumi-gui-dark.png)](https://postimg.cc/H8zVKnvz)
+
+### Light
+
+[![lumi-gui-light.png](https://i.postimg.cc/K8bpV16y/lumi-gui-light.png)](https://postimg.cc/HVSt8kWS)
+
 ## Why did I make this ?
 
 I was trying to make applications using C++ and felt the process is extremely tidious with SDL3. Though libraries like Qt exsits, I didn't want to get used to a framework and also I recently learned about webview so wanted give that a try.
