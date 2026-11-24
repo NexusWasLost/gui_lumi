@@ -1,1 +1,3 @@
-IDI_APP_ICON ICON "./assets/icons/Lumi-wide.ico"
+LUMI_APP_ICON ICON "./assets/icons/lumi_256px.ico"
+LUMI_APP_ICON_SMALL ICON "./assets/icons/lumi_16px.ico"
+LUMI_APP_ICON_TASKBAR ICON "./assets/icons/lumi_32px.ico"

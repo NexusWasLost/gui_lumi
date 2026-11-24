@@ -14,14 +14,24 @@ LUMI global_lumi;
 
 void setIcon(webview::webview& w){
     HWND window = static_cast<HWND>(w.window().value()); //get the webview window address (void*) and cast to a HWND !
-    HICON hIcon = LoadIconW(GetModuleHandleW(nullptr), L"IDI_APP_ICON");
-    if (hIcon == nullptr) {
+    HMODULE module = GetModuleHandleW(nullptr);
+    if(module == nullptr){
+        DWORD modErr = GetLastError();
+        std::string msg = "Failed to Load Module, error code: " + std::to_string(modErr);
+        MessageBoxA(nullptr, msg.c_str(), "Module loading error", MB_OK);
+    }
+
+    HICON smallIcon = LoadIconW(module, L"LUMI_APP_ICON_SMALL");
+    HICON taskbarIcon = LoadIconW(module, L"LUMI_APP_ICON_TASKBAR");
+
+    if (smallIcon == nullptr || taskbarIcon == nullptr) {
         DWORD errCode = GetLastError();
         std::string msg = "LoadIconW failed, error: " + std::to_string(errCode);
         MessageBoxA(nullptr, msg.c_str(), "webview error", MB_OK);
     }
-    SendMessage(window, WM_SETICON, ICON_BIG, reinterpret_cast<LPARAM>(hIcon));
-    SendMessage(window, WM_SETICON, ICON_SMALL, reinterpret_cast<LPARAM>(hIcon));
+
+    SendMessage(window, WM_SETICON, ICON_BIG, reinterpret_cast<LPARAM>(taskbarIcon));
+    SendMessage(window, WM_SETICON, ICON_SMALL, reinterpret_cast<LPARAM>(smallIcon));
 }
 
 std::string wideToUtf8(const wchar_t* wideText) {
@@ -127,7 +137,12 @@ int WINAPI WinMain(HINSTANCE /*hInst*/, HINSTANCE /*hPrevInst*/,
 int main() {
 #endif
   try {
-    webview::webview w(true, nullptr);
+    #ifdef NDEBUG
+        webview::webview w(false, nullptr); //release build
+    #else
+        webview::webview w(true, nullptr); //dev build
+    #endif
+
     w.set_title("Lumi");
     w.set_size(1280, 720, WEBVIEW_HINT_NONE);
     setIcon(w);

@@ -1,2 +1,5 @@
 all:
-	./build/bin/app.exe
+	./build/bin/Lumi.exe
+
+cmake:
+	cmake --build build --clean-first
