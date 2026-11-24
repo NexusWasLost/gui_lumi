@@ -14,10 +14,9 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(webview)
 
 add_executable(app WIN32)
-target_sources(app PRIVATE main.cpp)
+target_sources(app PRIVATE main.cpp app.rc)
 target_include_directories(app PRIVATE ./Lumi_v5.0.0/include)
 target_link_directories(app PRIVATE ./Lumi_v5.0.0/lib)
 target_link_libraries(app PRIVATE webview::core)
 target_link_libraries(app PRIVATE lumi)
 target_link_libraries(app PRIVATE dxgi dxguid ole32 iphlpapi)
-

@@ -4,12 +4,25 @@
 #include "lumi_helpers.h"
 #include "json.hpp"
 
-#include <iostream>
+// #include <iostream>
 #include <string>
 #include <filesystem>
+#include <windows.h>
 
 using json = nlohmann::json;
 LUMI global_lumi;
+
+void setIcon(webview::webview& w){
+    HWND window = static_cast<HWND>(w.window().value()); //get the webview window address (void*) and cast to a HWND !
+    HICON hIcon = LoadIconW(GetModuleHandleW(nullptr), L"IDI_APP_ICON");
+    if (hIcon == nullptr) {
+        DWORD errCode = GetLastError();
+        std::string msg = "LoadIconW failed, error: " + std::to_string(errCode);
+        MessageBoxA(nullptr, msg.c_str(), "webview error", MB_OK);
+    }
+    SendMessage(window, WM_SETICON, ICON_BIG, reinterpret_cast<LPARAM>(hIcon));
+    SendMessage(window, WM_SETICON, ICON_SMALL, reinterpret_cast<LPARAM>(hIcon));
+}
 
 std::string wideToUtf8(const wchar_t* wideText) {
     size_t requiredSize = UTF16toUTF8(wideText, nullptr, 0); //get the required size
@@ -115,10 +128,11 @@ int main() {
 #endif
   try {
     webview::webview w(true, nullptr);
-    w.set_title("Basic Example");
+    w.set_title("Lumi");
     w.set_size(1280, 720, WEBVIEW_HINT_NONE);
+    setIcon(w);
 
-    auto path = std::filesystem::absolute("./ui/index.html");
+    auto path = std::filesystem::absolute("./assets/ui/index.html");
     w.navigate("file:///" + path.generic_string());
 
     w.bind("getSystemInfo", getSystemInfoWrapper);
