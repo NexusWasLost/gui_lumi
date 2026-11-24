@@ -59,6 +59,9 @@
     margin: 0;
     padding: 0;
     cursor: default;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) transparent;
 }
 
 body {
