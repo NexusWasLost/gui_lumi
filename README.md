@@ -78,6 +78,17 @@ cmake --build release_build
 This will create an executable in the `<root>/release_build/bin` directory,
 alongside that it will also create a fully releasable directory with everything in it. That directory will be located in `<root>/release_build/release`.
 
+## Resources
+
+- webview/webview: https://github.com/webview/webview
+- Fonts sourced from Google Fonts: https://fonts.google.com/
+- Icons sourced from Remix Icons: https://remixicon.com/
+- Microsoft Docs for learning how to set icons:
+    - https://learn.microsoft.com/en-us/windows/win32/menurc/icon-resource
+    - https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-loadimagew
+    - https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-getmodulehandlew
+- Lumi: https://github.com/NexusWasLost/Lumi
+
 ## Other info
 
 - This application only supports Windows 11 and 10.
