@@ -9,7 +9,7 @@ Download from [releases]() or click to download the latest release [here]().
 > [!NOTE]
 > Windows may show a SmartScreen warning because the app is not code-signed. Choose More info, then Run anyway.
 
-Supported on Windows 10 and Windows 11.
+Supported on Windows 10 and Windows 11. Moreover it requires [WebView2](https://developer.microsoft.com/en-in/microsoft-edge/webview2/?ch=1&form=MA13LH&cs=2885428259) to render the UI, though it should be present on most systems and I too bundle a `libwebview.dll` with downloadable file.
 
 ## Why did I make this ?
 
