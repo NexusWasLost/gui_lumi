@@ -4,7 +4,7 @@ This is an Graphical user interface application built using C++ and webview, int
 
 ## Download
 
-Download from [releases]() or click to download the latest release [here]().
+Download from [releases](https://github.com/NexusWasLost/gui_lumi/releases) or click to download the latest release [here](https://github.com/NexusWasLost/gui_lumi/releases/latest).
 
 No installations required, it ships as a portable executable.
 
