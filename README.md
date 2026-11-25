@@ -23,23 +23,7 @@ Supported on Windows 10 and Windows 11. Moreover it requires [WebView2](https://
 
 [![lumi-gui-light.png](https://i.postimg.cc/K8bpV16y/lumi-gui-light.png)](https://postimg.cc/HVSt8kWS)
 
-## Why did I make this ?
-
-I was trying to make applications using C++ and felt the process is extremely tidious with SDL3. Though libraries like Qt exsits, I didn't want to get used to a framework and also I recently learned about webview so wanted give that a try.
-
-Best case was I integrated my own C library - Lumi and welp now we are here !
-
-## AI usage
-
-This section is I think important to clarify how I used AI for building this application.
-
-**UI**: Since it uses webview its written in HTML, CSS and JavaScript and I used AI to mostly vibe code this part because I hate writing UI ! Though I still needed to make tweaks and additions in AI code to solve UI and logic bugs.
-
-**Window**: The main executable (C++) owns the actual window and also the integration with Lumi. This one is hand coded, I wrote every line myself. I used AI to learn the concepts and why things behave the way they do.
-
-**AI used**: Claude & ChatGPT
-
-## Building from scratch
+## Building from source
 
 This project uses CMake with MinGW Makefiles (make32) as its build tool.
 
@@ -87,6 +71,22 @@ cmake --build release_build
 
 This will create an executable in the `<root>/release_build/bin` directory,
 alongside that it will also create a fully releasable directory with everything in it. That directory will be located in `<root>/release_build/release`.
+
+## AI usage
+
+This section is I think important to clarify how I used AI for building this application.
+
+**UI**: Since it uses webview its written in HTML, CSS and JavaScript and I used AI to mostly vibe code this part because I hate writing UI ! Though I still needed to make tweaks and additions in AI code to solve UI and logic bugs.
+
+**Window**: The main executable (C++) owns the actual window and also the integration with Lumi. This one is hand coded, I wrote every line myself. I used AI to learn the concepts and why things behave the way they do.
+
+**AI used**: Claude & ChatGPT
+
+## Why did I make this ?
+
+I was trying to make applications using C++ and felt the process is extremely tidious with SDL3. Though libraries like Qt exsits, I didn't want to get used to a framework and also I recently learned about webview so wanted give that a try.
+
+Best case was I integrated my own C library - Lumi and welp now we are here !
 
 ## Resources
 
